@@ -14,6 +14,7 @@ const App: React.FC = () => {
     const [project, setProject] = useState<Project>({
         projectName: '',
         clientName: '',
+        clientPhone: '',
         date: new Date().toISOString().split('T')[0],
         rooms: [
             {
@@ -124,7 +125,7 @@ const App: React.FC = () => {
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', `Estimate_${project.projectName}.pdf`);
+            link.setAttribute('download', `Estimate_${project.clientName || 'Interior'}.pdf`);
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -138,10 +139,10 @@ const App: React.FC = () => {
         <Layout>
             <Header onSave={handleSave} onDownload={handleDownloadPdf} />
 
-            <main className="space-y-12 pb-24">
+            <main style={{ paddingBottom: '100px' }}>
                 <ProjectOverviewCard project={project} onChange={handleProjectChange} />
 
-                <div className="space-y-12">
+                <div className="space-y-6">
                     {project.rooms.map((room, roomIdx) => (
                         <RoomSection
                             key={roomIdx}
@@ -156,25 +157,24 @@ const App: React.FC = () => {
                     ))}
                 </div>
 
-                <div className="flex flex-col md:flex-row justify-between items-center gap-10 pt-8 border-t border-white/5">
+                <div className="flex justify-center pt-8 no-print">
                     <button
                         onClick={addRoom}
-                        className="group relative flex items-center gap-3 px-10 py-5 bg-white text-slate-900 rounded-2xl font-black hover:bg-white hover:scale-105 transition-all shadow-2xl no-print overflow-hidden"
+                        style={{ padding: '12px 32px', borderStyle: 'dashed', borderWidth: '2px', background: '#f8fafc', color: '#64748b' }}
+                        onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#2563eb'; e.currentTarget.style.color = '#2563eb'; }}
+                        onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#e5e7eb'; e.currentTarget.style.color = '#64748b'; }}
                     >
-                        <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                        <Plus size={24} className="group-hover:rotate-180 transition-transform duration-500" />
-                        <span className="uppercase tracking-widest text-sm">Add New Section</span>
+                        <Plus size={20} />
+                        <span style={{ fontWeight: 700 }}>Add New Estimate Section</span>
                     </button>
-
-                    <div className="w-full md:w-auto min-w-[400px]">
-                        <TotalsCard grandTotal={project.grandTotal} />
-                    </div>
                 </div>
             </main>
 
-            <footer className="text-center text-slate-600 text-[10px] font-black uppercase tracking-[0.5em] py-20 no-print border-t border-white/5 mt-20">
-                Interior Studio <span className="text-indigo-500">Pro</span> • <span className="text-slate-500 opacity-50">Smart Estimation Technology</span>
+            <footer className="app-footer no-print">
+                <p>© 2026 Interior Studio Pro • Professional Estimation Tool</p>
             </footer>
+
+            <TotalsCard grandTotal={project.grandTotal} onDownload={handleDownloadPdf} />
         </Layout>
     );
 };

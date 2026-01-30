@@ -16,6 +16,7 @@ public class Project {
 
     private String projectName;
     private String clientName;
+    private String clientPhone;
     private LocalDate date;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

@@ -1,44 +1,50 @@
 import React from 'react';
 import { Room, Item } from '../types';
-import { Trash2, Plus, Box } from 'lucide-react';
 import ItemsTable from './ItemsTable';
+import { Plus, X } from 'lucide-react';
 
 interface RoomSectionProps {
     room: Room;
     roomIdx: number;
-    onRoomNameChange: (idx: number, name: string) => void;
-    onRemoveRoom: (idx: number) => void;
+    onRoomNameChange: (roomIdx: number, value: string) => void;
+    onRemoveRoom: (roomIdx: number) => void;
     onItemChange: (roomIdx: number, itemIdx: number, field: keyof Item, value: any) => void;
     onAddItem: (roomIdx: number) => void;
     onRemoveItem: (roomIdx: number, itemIdx: number) => void;
 }
 
 const RoomSection: React.FC<RoomSectionProps> = ({
-    room, roomIdx, onRoomNameChange, onRemoveRoom, onItemChange, onAddItem, onRemoveItem
+    room,
+    roomIdx,
+    onRoomNameChange,
+    onRemoveRoom,
+    onItemChange,
+    onAddItem,
+    onRemoveItem,
 }) => {
     return (
-        <div className="premium-card rounded-[2.5rem] p-10 space-y-8 relative overflow-hidden group/card">
-            <div className="absolute top-0 right-0 p-10 opacity-5 group-hover/card:opacity-10 transition-opacity">
-                <Box size={120} className="text-white" />
-            </div>
-
-            <div className="flex justify-between items-center border-b border-white/5 pb-6">
-                <div className="flex-1 max-w-md">
+        <section className="section">
+            <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-4">
+                    <span style={{ fontSize: '11px', fontWeight: 700, background: '#f1f5f9', color: '#64748b', padding: '2px 8px', borderRadius: '4px', textTransform: 'uppercase' }}>
+                        Section {roomIdx + 1}
+                    </span>
                     <input
                         type="text"
                         value={room.roomName}
                         onChange={(e) => onRoomNameChange(roomIdx, e.target.value)}
-                        className="text-2xl font-black text-white bg-transparent outline-none focus:ring-0 w-full placeholder:text-slate-800"
+                        className="section-input-title"
                         placeholder="Section Name"
                     />
-                    <div className="h-1 w-12 bg-indigo-500 rounded-full mt-2"></div>
                 </div>
                 <button
                     onClick={() => onRemoveRoom(roomIdx)}
-                    className="p-3 text-slate-600 hover:text-red-400 hover:bg-red-500/10 rounded-2xl transition-all no-print flex items-center gap-2 text-xs font-bold uppercase tracking-widest"
+                    className="no-print"
+                    style={{ padding: '6px', border: 'none', background: 'transparent', color: '#cbd5e1' }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = '#ef4444'}
+                    onMouseLeave={(e) => e.currentTarget.style.color = '#cbd5e1'}
                 >
-                    <Trash2 size={18} />
-                    <span className="hidden md:inline">Remove Section</span>
+                    <X size={20} />
                 </button>
             </div>
 
@@ -49,23 +55,20 @@ const RoomSection: React.FC<RoomSectionProps> = ({
                 onRemoveItem={onRemoveItem}
             />
 
-            <div className="flex justify-between items-end no-print pt-6">
+            <div className="flex items-center justify-between mt-8">
                 <button
                     onClick={() => onAddItem(roomIdx)}
-                    className="group flex items-center gap-3 px-6 py-3 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 rounded-2xl transition-all border border-indigo-500/20"
+                    className="add-btn no-print"
                 >
-                    <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />
-                    <span className="font-bold text-sm tracking-wide">Add New Item</span>
+                    <Plus size={16} />
+                    <span>Add Item</span>
                 </button>
                 <div className="text-right">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.3em] mb-1">Section Subtotal</p>
-                    <p className="text-3xl font-black text-white tracking-tight">
-                        <span className="text-indigo-500 text-xl">₹</span>
-                        {room.roomTotal.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                    </p>
+                    <p style={{ fontSize: '12px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>Section Total</p>
+                    <p style={{ fontSize: '20px', fontWeight: 700, color: '#0f172a' }}>₹{(room.roomTotal || 0).toLocaleString()}</p>
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

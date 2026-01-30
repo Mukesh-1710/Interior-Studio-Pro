@@ -4,7 +4,7 @@ export interface Item {
     length: number;
     width: number;
     qty: number;
-    unit: 'sq.ft' | 'no.';
+    unit: 'sq.ft' | 'r.ft' | 'pcs' | 'ls';
     rate: number;
     amount: number;
 }
@@ -18,8 +18,9 @@ export interface Room {
 
 export interface Project {
     id?: number;
-    projectName: string;
+    projectName?: string;
     clientName: string;
+    clientPhone: string;
     date: string;
     rooms: Room[];
     grandTotal: number;

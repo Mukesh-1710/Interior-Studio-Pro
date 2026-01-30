@@ -1,6 +1,6 @@
 import React from 'react';
 import { Item } from '../types';
-import { Trash2, MoveRight } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 interface ItemsTableProps {
     items: Item[];
@@ -11,98 +11,104 @@ interface ItemsTableProps {
 
 const ItemsTable: React.FC<ItemsTableProps> = ({ items, roomIdx, onItemChange, onRemoveItem }) => {
     return (
-        <div className="overflow-x-auto">
-            <table className="w-full border-separate border-spacing-y-2">
-                <thead>
-                    <tr className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.2em]">
-                        <th className="px-4 py-2 text-center w-12">#</th>
-                        <th className="px-4 py-2 text-left">Item Description</th>
-                        <th className="px-4 py-2 text-center w-24">Unit</th>
-                        <th className="px-4 py-2 text-center w-48">Dimensions</th>
-                        <th className="px-4 py-2 text-center w-24">Qty</th>
-                        <th className="px-4 py-2 text-right w-32">Rate (₹)</th>
-                        <th className="px-4 py-2 text-right w-40">Total (₹)</th>
-                        <th className="px-4 py-2 text-center no-print w-10"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map((item, itemIdx) => (
-                        <tr key={itemIdx} className="group glass/20 transition-all duration-300 hover:scale-[1.01]">
-                            <td className="px-4 py-4 text-center text-slate-500 font-mono text-xs bg-white/5 rounded-l-2xl">
-                                {String(itemIdx + 1).padStart(2, '0')}
-                            </td>
-                            <td className="px-4 py-4 bg-white/5">
-                                <input
-                                    type="text"
-                                    value={item.itemName}
-                                    onChange={(e) => onItemChange(roomIdx, itemIdx, 'itemName', e.target.value)}
-                                    placeholder="Enter item description..."
-                                    className="w-full bg-transparent focus:ring-0 outline-none text-sm font-semibold text-white placeholder:text-slate-700"
-                                />
-                            </td>
-                            <td className="px-4 py-4 text-center bg-white/5">
-                                <select
-                                    value={item.unit}
-                                    onChange={(e) => onItemChange(roomIdx, itemIdx, 'unit', e.target.value)}
-                                    className="bg-slate-800/80 rounded-lg px-2 py-1 font-bold text-indigo-400 text-[10px] outline-none cursor-pointer appearance-none text-center border border-white/5"
-                                >
-                                    <option value="sq.ft">SQ.FT</option>
-                                    <option value="no.">NOS</option>
-                                </select>
-                            </td>
-                            <td className="px-4 py-4 text-center bg-white/5 font-mono text-[11px]">
-                                {item.unit === 'sq.ft' ? (
-                                    <div className="flex items-center justify-center gap-2">
-                                        <input
-                                            type="number"
-                                            value={item.length || ''}
-                                            onChange={(e) => onItemChange(roomIdx, itemIdx, 'length', e.target.value)}
-                                            className="w-14 bg-slate-800/80 border border-white/5 rounded-xl p-2 text-center outline-none text-white focus:border-indigo-500/50"
-                                        />
-                                        <span className="text-slate-600">×</span>
-                                        <input
-                                            type="number"
-                                            value={item.width || ''}
-                                            onChange={(e) => onItemChange(roomIdx, itemIdx, 'width', e.target.value)}
-                                            className="w-14 bg-slate-800/80 border border-white/5 rounded-xl p-2 text-center outline-none text-white focus:border-indigo-500/50"
-                                        />
-                                    </div>
-                                ) : (
-                                    <span className="text-slate-700 italic">—</span>
-                                )}
-                            </td>
-                            <td className="px-4 py-4 text-center bg-white/5">
-                                <input
-                                    type="number"
-                                    disabled={item.unit === 'sq.ft'}
-                                    value={item.qty || ''}
-                                    onChange={(e) => onItemChange(roomIdx, itemIdx, 'qty', e.target.value)}
-                                    className={`w-16 rounded-xl p-2 text-center text-sm font-bold ${item.unit === 'sq.ft' ? 'bg-transparent text-slate-600' : 'bg-slate-800/80 border border-white/5 text-white'}`}
-                                />
-                            </td>
-                            <td className="px-4 py-4 text-right bg-white/5">
-                                <input
-                                    type="number"
-                                    value={item.rate || ''}
-                                    onChange={(e) => onItemChange(roomIdx, itemIdx, 'rate', e.target.value)}
-                                    className="w-full bg-transparent text-right outline-none font-bold text-slate-300 focus:text-white"
-                                />
-                            </td>
-                            <td className="px-4 py-4 text-right bg-white/5 font-bold text-indigo-400 text-sm">
-                                {item.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-                            </td>
-                            <td className="px-4 py-4 text-center bg-white/5 rounded-r-2xl no-print">
-                                <button
-                                    onClick={() => onRemoveItem(roomIdx, itemIdx)}
-                                    className="p-2 text-slate-600 hover:text-red-400 transition-all opacity-0 group-hover:opacity-100"
-                                >
-                                    <Trash2 size={16} />
-                                </button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div style={{ marginTop: '16px' }}>
+            <div className="table-header no-print">
+                <div>#</div>
+                <div>Description</div>
+                <div>Unit</div>
+                <div>Dimensions</div>
+                <div style={{ textAlign: 'right' }}>Qty</div>
+                <div style={{ textAlign: 'right' }}>Rate</div>
+                <div style={{ textAlign: 'right' }}>Amount</div>
+                <div></div>
+            </div>
+
+            <div className="item-list">
+                {items.map((item, itemIdx) => (
+                    <div key={itemIdx} className="item-row">
+                        <div style={{ fontSize: '12px', color: '#94a3b8', fontWeight: 600 }}>
+                            {itemIdx + 1}
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                value={item.itemName}
+                                onChange={(e) => onItemChange(roomIdx, itemIdx, 'itemName', e.target.value)}
+                                placeholder="Item name..."
+                                style={{ padding: '4px 8px' }}
+                            />
+                        </div>
+                        <div>
+                            <select
+                                value={item.unit}
+                                onChange={(e) => onItemChange(roomIdx, itemIdx, 'unit', e.target.value)}
+                                style={{ padding: '4px 8px' }}
+                            >
+                                <option value="sq.ft">sq.ft</option>
+                                <option value="r.ft">r.ft</option>
+                                <option value="pcs">pcs</option>
+                                <option value="ls">ls</option>
+                            </select>
+                        </div>
+                        <div>
+                            {item.unit === 'sq.ft' ? (
+                                <div className="flex items-center gap-1">
+                                    <input
+                                        type="number"
+                                        value={item.length || ''}
+                                        onChange={(e) => onItemChange(roomIdx, itemIdx, 'length', e.target.value)}
+                                        style={{ padding: '4px 4px', textAlign: 'right' }}
+                                        placeholder="L"
+                                    />
+                                    <span style={{ fontSize: '10px', color: '#94a3b8' }}>×</span>
+                                    <input
+                                        type="number"
+                                        value={item.width || ''}
+                                        onChange={(e) => onItemChange(roomIdx, itemIdx, 'width', e.target.value)}
+                                        style={{ padding: '4px 4px', textAlign: 'right' }}
+                                        placeholder="W"
+                                    />
+                                </div>
+                            ) : (
+                                <div style={{ textAlign: 'center', color: '#e2e8f0' }}>—</div>
+                            )}
+                        </div>
+                        <div>
+                            <input
+                                type="number"
+                                value={item.qty || ''}
+                                onChange={(e) => onItemChange(roomIdx, itemIdx, 'qty', e.target.value)}
+                                style={{ padding: '4px 8px', textAlign: 'right' }}
+                                placeholder="0"
+                                disabled={item.unit === 'sq.ft'}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="number"
+                                value={item.rate || ''}
+                                onChange={(e) => onItemChange(roomIdx, itemIdx, 'rate', e.target.value)}
+                                style={{ padding: '4px 8px', textAlign: 'right', fontWeight: 500 }}
+                                placeholder="0"
+                            />
+                        </div>
+                        <div className="amount">
+                            ₹{(item.amount || 0).toLocaleString()}
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            <button
+                                onClick={() => onRemoveItem(roomIdx, itemIdx)}
+                                className="no-print"
+                                style={{ padding: '4px', border: 'none', background: 'transparent', color: '#cbd5e1' }}
+                                onMouseEnter={(e) => e.currentTarget.style.color = '#ef4444'}
+                                onMouseLeave={(e) => e.currentTarget.style.color = '#cbd5e1'}
+                            >
+                                <Trash2 size={16} />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

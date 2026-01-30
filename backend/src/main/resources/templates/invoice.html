@@ -4,11 +4,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
+        @page {
+            margin: 0.5in;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 20px;
             color: #333;
+            line-height: 1.4;
         }
 
         .header {
@@ -18,63 +23,75 @@
             margin-bottom: 20px;
         }
 
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+            font-weight: bold;
+        }
+
         .project-info {
+            display: table;
+            width: 100%;
             margin-bottom: 30px;
         }
 
-        .project-info p {
-            margin: 5px 0;
+        .info-cell {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
         }
 
         .room-card {
             margin-bottom: 30px;
             border: 1px solid #ddd;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 4px;
             page-break-inside: avoid;
         }
 
         .room-title {
-            font-size: 1.2em;
+            font-size: 1.25em;
             font-weight: bold;
-            margin-bottom: 10px;
-            background-color: #f9f9f9;
-            padding: 5px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
         }
 
         th,
         td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 8px 10px;
             text-align: left;
+            font-size: 13px;
         }
 
         th {
             background-color: #f2f2f2;
-        }
-
-        .total-row {
+            color: #333;
             font-weight: bold;
-            text-align: right;
-        }
-
-        .grand-total {
-            font-size: 1.5em;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 40px;
-            border-top: 2px solid #333;
-            padding-top: 10px;
         }
 
         .text-right {
             text-align: right;
+        }
+
+        .room-total-row th {
+            text-align: right;
+            background-color: transparent;
+            border: none;
+        }
+
+        .grand-total {
+            font-size: 1.6em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 40px;
+            border-top: 3px solid #333;
+            padding-top: 15px;
         }
     </style>
 </head>
@@ -85,9 +102,21 @@
     </div>
 
     <div class="project-info">
-        <p><strong>Project Name:</strong> <span th:text="${project.projectName}">Project A</span></p>
-        <p><strong>Client Name:</strong> <span th:text="${project.clientName}">Client Name</span></p>
-        <p><strong>Date:</strong> <span th:text="${project.date}">2026-01-29</span></p>
+        <div class="info-cell" style="text-align: left;">
+            <p style="margin: 0 0 5px 0; font-weight: bold; color: #666; font-size: 11px; text-transform: uppercase;">
+                BILL FROM:</p>
+            <p style="margin: 2px 0; font-size: 16px; font-weight: bold;">Ramachandran</p>
+            <p style="margin: 2px 0; font-size: 14px;">+91 97905 19970</p>
+        </div>
+        <div class="info-cell" style="text-align: right;">
+            <p style="margin: 0 0 5px 0; font-weight: bold; color: #666; font-size: 11px; text-transform: uppercase;">
+                BILL TO:</p>
+            <p style="margin: 2px 0; font-size: 16px; font-weight: bold;"><span th:text="${project.clientName}">Client
+                    Name</span></p>
+            <p style="margin: 2px 0; font-size: 14px;"><span th:text="${project.clientPhone}">+91 98765 43210</span></p>
+            <p style="margin: 8px 0 0 0; font-size: 12px; color: #777;">Date: <span
+                    th:text="${project.date}">2026-01-30</span></p>
+        </div>
     </div>
 
     <div th:each="room : ${project.rooms}" class="room-card">
@@ -95,13 +124,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>S.No</th>
-                    <th>Item</th>
-                    <th>Dimension (L x W)</th>
-                    <th>Qty</th>
-                    <th>Unit</th>
-                    <th>Rate</th>
-                    <th>Amount</th>
+                    <th style="width: 40px;">S.No</th>
+                    <th>Item Description</th>
+                    <th style="width: 120px;">Dimension (L x W)</th>
+                    <th style="width: 60px;" class="text-right">Qty</th>
+                    <th style="width: 60px;">Unit</th>
+                    <th style="width: 80px;" class="text-right">Rate</th>
+                    <th style="width: 100px;" class="text-right">Amount</th>
                 </tr>
             </thead>
             <tbody>
@@ -112,18 +141,20 @@
                         <span th:if="${item.unit == 'sq.ft'}"
                             th:text="${(item.length != null ? item.length : 0) + ' x ' + (item.width != null ? item.width : 0)}">10
                             x 10</span>
-                        <span th:if="${item.unit == 'no.'}">-</span>
+                        <span th:if="${item.unit != 'sq.ft'}">-</span>
                     </td>
-                    <td th:text="${item.qty}">100</td>
+                    <td class="text-right" th:text="${item.qty}">100</td>
                     <td th:text="${item.unit}">sq.ft</td>
-                    <td th:text="${#numbers.formatDecimal(item.rate, 1, 2)}">100.00</td>
+                    <td class="text-right" th:text="${#numbers.formatDecimal(item.rate, 1, 2)}">100.00</td>
                     <td class="text-right" th:text="${#numbers.formatDecimal(item.amount, 1, 2)}">10000.00</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" class="text-right"><strong>Room Total</strong></td>
-                    <td class="text-right"><strong
+                    <td colspan="6" class="text-right" style="border: none; padding-top: 15px;"><strong>Room
+                            Total</strong></td>
+                    <td class="text-right"
+                        style="border: 1px solid #ddd; padding-top: 15px; background-color: #f9f9f9;"><strong
                             th:text="${#numbers.formatDecimal(room.roomTotal, 1, 2)}">10000.00</strong></td>
                 </tr>
             </tfoot>

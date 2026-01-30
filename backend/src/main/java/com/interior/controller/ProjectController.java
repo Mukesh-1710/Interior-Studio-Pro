@@ -46,7 +46,8 @@ public class ProjectController {
         byte[] pdf = pdfGeneratorService.generateInvoicePdf(project);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=invoice_" + id + ".pdf")
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=Estimate_" + project.getClientName() + ".pdf")
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(pdf);
     }
