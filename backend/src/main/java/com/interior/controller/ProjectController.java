@@ -40,6 +40,12 @@ public class ProjectController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Project> updateProject(@PathVariable Long id, @RequestBody Project project) {
+        project.setId(id);
+        return ResponseEntity.ok(projectService.saveProject(project));
+    }
+
     @GetMapping("/{id}/pdf")
     public ResponseEntity<byte[]> downloadInvoice(@PathVariable Long id) throws Exception {
         Project project = projectService.getProjectById(id);

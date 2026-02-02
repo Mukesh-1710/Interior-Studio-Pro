@@ -3,8 +3,9 @@ export interface Item {
     itemName: string;
     length: number;
     width: number;
-    qty: number;
-    unit: 'sq.ft' | 'r.ft' | 'pcs' | 'ls';
+    pieces: number;
+    totalArea: number;
+    unit: 'sq.ft' | 'pcs';
     rate: number;
     amount: number;
 }

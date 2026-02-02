@@ -127,8 +127,8 @@
                     <th style="width: 40px;">S.No</th>
                     <th>Item Description</th>
                     <th style="width: 120px;">Dimension (L x W)</th>
-                    <th style="width: 60px;" class="text-right">Qty</th>
-                    <th style="width: 60px;">Unit</th>
+                    <th style="width: 40px;" class="text-right">Nos</th>
+                    <th style="width: 80px;" class="text-right">Area</th>
                     <th style="width: 80px;" class="text-right">Rate</th>
                     <th style="width: 100px;" class="text-right">Amount</th>
                 </tr>
@@ -139,23 +139,26 @@
                     <td th:text="${item.itemName}">Item Name</td>
                     <td>
                         <span th:if="${item.unit == 'sq.ft'}"
-                            th:text="${(item.length != null ? item.length : 0) + ' x ' + (item.width != null ? item.width : 0)}">10
-                            x 10</span>
+                            th:text="${(item.length != null ? item.length : 0) + ' x ' + (item.width != null ? item.width : 0)}">7
+                            x 3</span>
                         <span th:if="${item.unit != 'sq.ft'}">-</span>
                     </td>
-                    <td class="text-right" th:text="${item.qty}">100</td>
-                    <td th:text="${item.unit}">sq.ft</td>
-                    <td class="text-right" th:text="${#numbers.formatDecimal(item.rate, 1, 2)}">100.00</td>
-                    <td class="text-right" th:text="${#numbers.formatDecimal(item.amount, 1, 2)}">10000.00</td>
+                    <td class="text-right" th:text="${item.pieces}">8</td>
+                    <td class="text-right">
+                        <span th:text="${#numbers.formatDecimal(item.totalArea, 1, 2)}">168.00</span>
+                        <span th:text="${item.unit == 'sq.ft' ? ' sq.ft' : ' pcs'}"> sq.ft</span>
+                    </td>
+                    <td class="text-right" th:text="${#numbers.formatDecimal(item.rate, 1, 2)}">2600.00</td>
+                    <td class="text-right" th:text="${#numbers.formatDecimal(item.amount, 1, 2)}">436800.00</td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="6" class="text-right" style="border: none; padding-top: 15px;"><strong>Room
+                    <td colspan="6" class="text-right" style="border: none; padding-top: 15px;"><strong>Section
                             Total</strong></td>
                     <td class="text-right"
                         style="border: 1px solid #ddd; padding-top: 15px; background-color: #f9f9f9;"><strong
-                            th:text="${#numbers.formatDecimal(room.roomTotal, 1, 2)}">10000.00</strong></td>
+                            th:text="${#numbers.formatDecimal(room.roomTotal, 1, 2)}">436800.00</strong></td>
                 </tr>
             </tfoot>
         </table>

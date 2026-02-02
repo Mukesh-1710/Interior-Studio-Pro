@@ -27,18 +27,20 @@ public class CalculationService {
     }
 
     public void calculateItem(Item item) {
-        if ("sq.ft".equalsIgnoreCase(item.getUnit())) {
-            if (item.getLength() != null && item.getWidth() != null) {
-                item.setQty(item.getLength() * item.getWidth());
-            } else {
-                item.setQty(0.0);
-            }
-        }
-        // If unit is "no.", qty is provided by user, so no calculation needed for qty.
+        double rate = item.getRate() != null ? item.getRate() : 0.0;
+        int pieces = item.getPieces() != null ? item.getPieces() : 0;
 
-        if (item.getQty() != null && item.getRate() != null) {
-            item.setAmount(item.getQty() * item.getRate());
+        if ("sq.ft".equalsIgnoreCase(item.getUnit())) {
+            double length = item.getLength() != null ? item.getLength() : 0.0;
+            double width = item.getWidth() != null ? item.getWidth() : 0.0;
+            double totalArea = length * width * pieces;
+            item.setTotalArea(totalArea);
+            item.setAmount(totalArea * rate);
+        } else if ("pcs".equalsIgnoreCase(item.getUnit())) {
+            item.setTotalArea((double) pieces); // For pieces, totalArea is just the count
+            item.setAmount(pieces * rate);
         } else {
+            item.setTotalArea(0.0);
             item.setAmount(0.0);
         }
     }

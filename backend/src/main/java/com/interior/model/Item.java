@@ -14,8 +14,9 @@ public class Item {
     private String itemName;
     private Double length;
     private Double width;
-    private Double qty;
-    private String unit; // "sq.ft" or "no."
+    private Integer pieces;
+    private Double totalArea;
+    private String unit; // "sq.ft" or "pcs"
     private Double rate;
     private Double amount;
 }
