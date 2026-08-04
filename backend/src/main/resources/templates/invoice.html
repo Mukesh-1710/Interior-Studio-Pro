@@ -3,170 +3,659 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
+    <title>RR Interiors - Quotation</title>
+    <style type="text/css">
+    /* <![CDATA[ */
         @page {
-            margin: 0.5in;
+            size: A4 portrait;
+            margin: 12mm 14mm 16mm 14mm;
+            @top-right {
+                content: "RR INTERIORS | QUOTATION";
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 7pt;
+                font-weight: bold;
+                color: #94a3b8;
+            }
+            @bottom-left {
+                content: "RR Interiors - Professional Estimation and Quotation System";
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 7pt;
+                color: #94a3b8;
+            }
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 7.5pt;
+                font-weight: bold;
+                color: #475569;
+            }
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 20px;
-            color: #333;
+            padding: 0;
+            color: #1e293b;
+            font-size: 8.5pt;
             line-height: 1.4;
         }
 
-        .header {
-            text-align: center;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+        /* Helpers */
+        .text-left { text-align: left; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .font-bold { font-weight: bold; }
+        .uppercase { text-transform: uppercase; }
+        .page-break { page-break-before: always; }
+        .no-break { page-break-inside: avoid; }
+        .w-full { width: 100%; }
 
-        .header h1 {
-            font-size: 24px;
+        /* Document Header */
+        .doc-header {
+            width: 100%;
+            border-bottom: 2px solid #1e3a8a;
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+        .brand-title {
+            font-size: 20pt;
+            font-weight: bold;
+            color: #0f172a;
+            letter-spacing: 0.5px;
+            margin: 0 0 2px 0;
+        }
+        .brand-subtitle {
+            font-size: 8pt;
+            font-weight: bold;
+            color: #2563eb;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 4px 0;
+        }
+        .brand-contact {
+            font-size: 8pt;
+            color: #475569;
             margin: 0;
+        }
+        .quote-badge-title {
+            font-size: 16pt;
             font-weight: bold;
+            color: #1e3a8a;
+            margin: 0 0 4px 0;
+            text-align: right;
+            letter-spacing: 1px;
         }
-
-        .project-info {
-            display: table;
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .info-cell {
-            display: table-cell;
-            width: 50%;
-            vertical-align: top;
-        }
-
-        .room-card {
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 4px;
-            page-break-inside: avoid;
-        }
-
-        .room-title {
-            font-size: 1.25em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-        }
-
-        table {
-            width: 100%;
+        .quote-meta-table {
+            margin-left: auto;
             border-collapse: collapse;
         }
+        .quote-meta-table td {
+            padding: 2px 4px;
+            font-size: 8pt;
+        }
+        .meta-label {
+            color: #64748b;
+            font-weight: bold;
+            text-align: right;
+        }
+        .meta-val {
+            color: #0f172a;
+            font-weight: bold;
+            text-align: right;
+        }
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 8px 10px;
+        /* Two Column Overview Cards */
+        .overview-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 8px 0;
+            margin-bottom: 14px;
+        }
+        .overview-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 10px 12px;
+            vertical-align: top;
+        }
+        .card-header {
+            font-size: 8.5pt;
+            font-weight: bold;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+        }
+        .info-row {
+            margin: 3px 0;
+            font-size: 8pt;
+        }
+        .info-lbl {
+            color: #64748b;
+            font-weight: bold;
+            width: 80px;
+            display: inline-block;
+        }
+        .info-val {
+            color: #0f172a;
+            font-weight: 500;
+        }
+        .contract-pill {
+            display: inline-block;
+            background-color: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 7.5pt;
+            font-weight: bold;
+        }
+
+        /* Scope Box */
+        .scope-box {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 16px;
+        }
+        .scope-item {
+            display: inline-block;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 3px;
+            padding: 2px 8px;
+            margin: 2px 4px 2px 0;
+            font-size: 7.5pt;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        /* Section Titles */
+        .section-header {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-size: 9.5pt;
+            font-weight: bold;
+            padding: 6px 10px;
+            border-radius: 3px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Data Tables */
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 8pt;
+        }
+        table.data-table th {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 7.5pt;
+            letter-spacing: 0.3px;
+            border: 1px solid #cbd5e1;
+            padding: 6px 8px;
+        }
+        table.data-table td {
+            border: 1px solid #e2e8f0;
+            padding: 5px 8px;
+            vertical-align: middle;
+        }
+        table.data-table tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+        .room-header-row th {
+            background-color: #e0e7ff !important;
+            color: #1e3a8a !important;
+            font-size: 8.5pt !important;
             text-align: left;
-            font-size: 13px;
+            padding: 5px 8px;
+            border: 1px solid #c7d2fe !important;
         }
-
-        th {
-            background-color: #f2f2f2;
-            color: #333;
+        .room-total-cell {
+            background-color: #f1f5f9 !important;
             font-weight: bold;
+            color: #0f172a;
+            border: 1px solid #cbd5e1 !important;
         }
 
-        .text-right {
-            text-align: right;
+        /* Badges */
+        .badge-rr {
+            background-color: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 7pt;
+            font-weight: bold;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .badge-client {
+            background-color: #fffbeb;
+            color: #92400e;
+            border: 1px solid #fde68a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 7pt;
+            font-weight: bold;
+            display: inline-block;
+            white-space: nowrap;
         }
 
-        .room-total-row th {
-            text-align: right;
-            background-color: transparent;
+        /* Commercial Summary */
+        .commercial-container {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 12px 0;
+            margin-bottom: 14px;
+        }
+        .commercial-box {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 0;
+            vertical-align: top;
+        }
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+        }
+        .ledger-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .ledger-total-row {
+            background-color: #0f172a;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 9.5pt;
+        }
+        .ledger-total-row td {
+            padding: 8px 10px;
             border: none;
+            color: #ffffff;
+        }
+        .words-box {
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-top: 8px;
+            font-size: 8pt;
         }
 
-        .grand-total {
-            font-size: 1.6em;
-            font-weight: bold;
-            text-align: right;
-            margin-top: 40px;
-            border-top: 3px solid #333;
-            padding-top: 15px;
+        /* Terms and Warranty */
+        .terms-list {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 8pt;
+            color: #334155;
         }
+        .terms-list li {
+            margin-bottom: 4px;
+            line-height: 1.35;
+        }
+        .warranty-box {
+            background-color: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #16a34a;
+            border-radius: 3px;
+            padding: 8px 12px;
+            font-size: 8pt;
+            color: #166534;
+            line-height: 1.4;
+            margin-bottom: 14px;
+        }
+
+        /* Sign-off Table */
+        .sign-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 16px 0;
+            margin-top: 14px;
+        }
+        .sign-cell {
+            width: 50%;
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 12px 14px;
+            vertical-align: top;
+        }
+        .sign-title {
+            font-size: 8.5pt;
+            font-weight: bold;
+            color: #1e3a8a;
+            text-transform: uppercase;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 4px;
+            margin-bottom: 35px;
+        }
+        .sign-line {
+            border-top: 1px dashed #64748b;
+            padding-top: 4px;
+            font-size: 8pt;
+        }
+        .empty-note {
+            color: #64748b;
+            font-style: italic;
+            font-size: 8pt;
+            padding: 8px;
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 3px;
+            text-align: center;
+        }
+    /* ]]> */
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <h1>INTERIOR COST SHEET / INVOICE</h1>
-    </div>
 
-    <div class="project-info">
-        <div class="info-cell" style="text-align: left;">
-            <p style="margin: 0 0 5px 0; font-weight: bold; color: #666; font-size: 11px; text-transform: uppercase;">
-                BILL FROM:</p>
-            <p style="margin: 2px 0; font-size: 16px; font-weight: bold;">Ramachandran</p>
-            <p style="margin: 2px 0; font-size: 14px;">+91 97905 19970</p>
-        </div>
-        <div class="info-cell" style="text-align: right;">
-            <p style="margin: 0 0 5px 0; font-weight: bold; color: #666; font-size: 11px; text-transform: uppercase;">
-                BILL TO:</p>
-            <p style="margin: 2px 0; font-size: 16px; font-weight: bold;"><span th:text="${project.clientName}">Client
-                    Name</span></p>
-            <p style="margin: 2px 0; font-size: 14px;"><span th:text="${project.clientPhone}">+91 98765 43210</span></p>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #777;">Date: <span
-                    th:text="${project.date}">2026-01-30</span></p>
-        </div>
-    </div>
-
-    <div th:each="room : ${project.rooms}" class="room-card">
-        <div class="room-title" th:text="${room.roomName}">Living Room</div>
-        <table>
-            <thead>
-                <tr>
-                    <th style="width: 40px;">S.No</th>
-                    <th>Item Description</th>
-                    <th style="width: 120px;">Dimension (L x W)</th>
-                    <th style="width: 40px;" class="text-right">Nos</th>
-                    <th style="width: 80px;" class="text-right">Area</th>
-                    <th style="width: 80px;" class="text-right">Rate</th>
-                    <th style="width: 100px;" class="text-right">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item, iterStat : ${room.items}">
-                    <td th:text="${iterStat.count}">1</td>
-                    <td th:text="${item.itemName}">Item Name</td>
-                    <td>
-                        <span th:if="${item.unit == 'sq.ft'}"
-                            th:text="${(item.length != null ? item.length : 0) + ' x ' + (item.width != null ? item.width : 0)}">7
-                            x 3</span>
-                        <span th:if="${item.unit != 'sq.ft'}">-</span>
-                    </td>
-                    <td class="text-right" th:text="${item.pieces}">8</td>
-                    <td class="text-right">
-                        <span th:text="${#numbers.formatDecimal(item.totalArea, 1, 2)}">168.00</span>
-                        <span th:text="${item.unit == 'sq.ft' ? ' sq.ft' : ' pcs'}"> sq.ft</span>
-                    </td>
-                    <td class="text-right" th:text="${#numbers.formatDecimal(item.rate, 1, 2)}">2600.00</td>
-                    <td class="text-right" th:text="${#numbers.formatDecimal(item.amount, 1, 2)}">436800.00</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="6" class="text-right" style="border: none; padding-top: 15px;"><strong>Section
-                            Total</strong></td>
-                    <td class="text-right"
-                        style="border: 1px solid #ddd; padding-top: 15px; background-color: #f9f9f9;"><strong
-                            th:text="${#numbers.formatDecimal(room.roomTotal, 1, 2)}">436800.00</strong></td>
-                </tr>
-            </tfoot>
+    <!-- =================================================== -->
+    <!-- SECTION 1: QUOTATION COVER & PROJECT OVERVIEW        -->
+    <!-- =================================================== -->
+    <div class="doc-header">
+        <table class="w-full">
+            <tr>
+                <td class="text-left" style="width: 55%; vertical-align: top;">
+                    <div class="brand-title">RR INTERIORS</div>
+                    <div class="brand-subtitle">Interior Design • Modular Woodwork • Turnkey Execution</div>
+                    <div class="brand-contact">
+                        Authorized Signatory: <strong th:text="${project.authorizedSignatory != null and !project.authorizedSignatory.trim().isEmpty() ? project.authorizedSignatory : 'Ramachandran (RR Interiors)'}">Ramachandran (RR Interiors)</strong><br />
+                        Direct Contact: <strong>+91 97905 19970</strong>
+                    </div>
+                </td>
+                <td class="text-right" style="width: 45%; vertical-align: top;">
+                    <div class="quote-badge-title">PROJECT QUOTATION</div>
+                    <table class="quote-meta-table">
+                        <tr>
+                            <td class="meta-label">Quotation No:</td>
+                            <td class="meta-val" th:text="${project.quotationNumber != null and !project.quotationNumber.trim().isEmpty() ? project.quotationNumber : '—'}">RR/2026/QT-001</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Date:</td>
+                            <td class="meta-val" th:text="${project.date != null ? project.date : '—'}">2026-08-03</td>
+                        </tr>
+                        <tr>
+                            <td class="meta-label">Valid Until:</td>
+                            <td class="meta-val" th:text="${project.validUntil != null ? project.validUntil : '—'}">2026-09-02</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
         </table>
     </div>
 
-    <div class="grand-total">
-        Grand Total: <span th:text="${#numbers.formatDecimal(project.grandTotal, 1, 2)}">10000.00</span>
+    <!-- Client & Project Info Cards -->
+    <table class="overview-table">
+        <tr>
+            <td class="overview-card" style="width: 50%;">
+                <div class="card-header">Client Information</div>
+                <div class="info-row"><span class="info-lbl">Client Name:</span> <strong class="info-val" th:text="${project.clientName != null and !project.clientName.trim().isEmpty() ? project.clientName : '—'}">Client Name</strong></div>
+                <div class="info-row"><span class="info-lbl">Phone:</span> <span class="info-val" th:text="${project.clientPhone != null and !project.clientPhone.trim().isEmpty() ? project.clientPhone : '—'}">+91 98765 43210</span></div>
+                <div class="info-row" th:if="${project.clientEmail != null and !project.clientEmail.trim().isEmpty()}"><span class="info-lbl">Email:</span> <span class="info-val" th:text="${project.clientEmail}">client@example.com</span></div>
+                <div class="info-row" th:if="${project.clientAddress != null and !project.clientAddress.trim().isEmpty()}"><span class="info-lbl">Site Address:</span> <span class="info-val" th:text="${project.clientAddress}">Client Address</span></div>
+            </td>
+            <td class="overview-card" style="width: 50%;">
+                <div class="card-header">Project Overview</div>
+                <div class="info-row"><span class="info-lbl">Project Name:</span> <strong class="info-val" th:text="${project.projectName != null and !project.projectName.trim().isEmpty() ? project.projectName : '—'}">Residential Interior</strong></div>
+                <div class="info-row"><span class="info-lbl">Location:</span> <span class="info-val" th:text="${project.projectLocation != null and !project.projectLocation.trim().isEmpty() ? project.projectLocation : '—'}">Site Location</span></div>
+                <div class="info-row"><span class="info-lbl">Contract Type:</span> <span class="contract-pill" th:text="${project.contractType != null and !project.contractType.trim().isEmpty() ? project.contractType : 'Material + Labour'}">Material + Labour</span></div>
+                <div class="info-row" th:if="${project.estimatedDuration != null and !project.estimatedDuration.trim().isEmpty()}"><span class="info-lbl">Duration:</span> <span class="info-val" th:text="${project.estimatedDuration}">45 Working Days</span></div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Project Scope Checklist -->
+    <div class="scope-box" th:if="${scopes != null and !scopes.empty}">
+        <div style="font-size: 7.5pt; font-weight: bold; color: #475569; text-transform: uppercase; margin-bottom: 4px;">Approved Project Scope:</div>
+        <div>
+            <span th:each="scope : ${scopes}" class="scope-item">✓ <span th:text="${scope}">Modular Kitchen</span></span>
+        </div>
     </div>
+
+    <!-- =================================================== -->
+    <!-- SECTION 2: ESTIMATION & MEASUREMENT BREAKDOWN       -->
+    <!-- =================================================== -->
+    <div class="section-header">1. Detailed Estimation and Measurement Breakdown</div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 5%;" class="text-center">S.No</th>
+                <th style="width: 37%;">Item Description</th>
+                <th style="width: 14%;" class="text-center">Dimensions</th>
+                <th style="width: 6%;" class="text-center">Nos</th>
+                <th style="width: 11%;" class="text-right">Total Area</th>
+                <th style="width: 12%;" class="text-right">Rate</th>
+                <th style="width: 15%;" class="text-right">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="room, roomStat : ${project.rooms}">
+                <!-- Room Group Header -->
+                <tr class="room-header-row">
+                    <th colspan="7">
+                        <span th:text="${roomStat.count + '. ' + room.roomName}">1. Living Room</span>
+                    </th>
+                </tr>
+                <!-- Room Items -->
+                <tr th:each="item, itemStat : ${room.items}">
+                    <td class="text-center" th:text="${itemStat.count}">1</td>
+                    <td><strong th:text="${item.itemName}">Wardrobe with Loft</strong></td>
+                    <td class="text-center" th:text="${fmt.formatDimension(item.length, item.width, item.unit)}">7' × 3'</td>
+                    <td class="text-center" th:text="${item.pieces != null ? item.pieces : 1}">1</td>
+                    <td class="text-right">
+                        <span th:text="${#numbers.formatDecimal(item.totalArea != null ? item.totalArea : 0.0, 1, 2)}">21.00</span>
+                        <span style="font-size: 7pt; color: #64748b;" th:text="${item.unit == 'pcs' ? ' Nos' : ' Sft'}"> Sft</span>
+                    </td>
+                    <td class="text-right" th:text="${fmt.formatCurrency(item.rate)}">₹ 1,800.00</td>
+                    <td class="text-right font-bold" th:text="${fmt.formatCurrency(item.amount)}">₹ 37,800.00</td>
+                </tr>
+                <!-- Room Subtotal Row -->
+                <tr>
+                    <td colspan="6" class="text-right room-total-cell" style="text-transform: uppercase; font-size: 7.5pt;">
+                        <span th:text="${room.roomName + ' Total:'}">Room Total:</span>
+                    </td>
+                    <td class="text-right room-total-cell" th:text="${fmt.formatCurrency(room.roomTotal)}">₹ 37,800.00</td>
+                </tr>
+            </th:block>
+            <!-- Estimation Base Subtotal Summary -->
+            <tr style="background-color: #f1f5f9; font-weight: bold;">
+                <td colspan="6" class="text-right" style="padding: 7px 8px; font-size: 8.5pt; color: #0f172a; text-transform: uppercase; border-top: 2px solid #cbd5e1;">
+                    Base Estimation Subtotal:
+                </td>
+                <td class="text-right" style="padding: 7px 8px; font-size: 8.5pt; color: #0f172a; border-top: 2px solid #cbd5e1;" th:text="${fmt.formatCurrency(project.subTotal != null ? project.subTotal : project.grandTotal)}">₹ 1,00,000.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- =================================================== -->
+    <!-- SECTION 3: MATERIAL & HARDWARE SPECIFICATIONS       -->
+    <!-- =================================================== -->
+    <div class="section-header" style="margin-top: 18px;">2. Material and Hardware Specifications</div>
+
+    <div th:if="${project.materialSpecifications != null and !project.materialSpecifications.empty}">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Category</th>
+                    <th style="width: 23%;">Item Description</th>
+                    <th style="width: 18%;">Application</th>
+                    <th style="width: 15%;">Brand / Series</th>
+                    <th style="width: 15%;">Specification</th>
+                    <th style="width: 14%;" class="text-center">Responsibility</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="spec : ${project.materialSpecifications}">
+                    <td><strong th:text="${spec.category != null ? spec.category : '—'}">Plywood</strong></td>
+                    <td>
+                        <strong th:text="${spec.itemName != null ? spec.itemName : '—'}">BWP 710 Marine Plywood</strong>
+                        <div th:if="${spec.thickness != null and !spec.thickness.empty}" style="font-size: 7pt; color: #64748b;" th:text="${'Thk: ' + spec.thickness}">Thk: 18mm</div>
+                    </td>
+                    <td th:text="${spec.application != null and !spec.application.empty ? spec.application : '—'}">Kitchen Cabinets</td>
+                    <td th:text="${spec.brand != null and !spec.brand.empty ? (spec.modelSeries != null and !spec.modelSeries.empty ? spec.brand + ' (' + spec.modelSeries + ')' : spec.brand) : '—'}">CenturyPly</td>
+                    <td th:text="${spec.specification != null and !spec.specification.empty ? (spec.finish != null and !spec.finish.empty ? spec.specification + ' • ' + spec.finish : spec.specification) : '—'}">IS:710 Marine Grade</td>
+                    <td class="text-center">
+                        <span th:if="${spec.supplyResponsibility != null and spec.supplyResponsibility.name() == 'RR_INTERIORS_SUPPLIED'}" class="badge-rr">RR Supplied</span>
+                        <span th:if="${spec.supplyResponsibility != null and spec.supplyResponsibility.name() == 'CLIENT_SUPPLIED'}" class="badge-client">Client Supplied</span>
+                        <span th:if="${spec.supplyResponsibility == null}" class="badge-rr">RR Supplied</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${project.materialSpecifications == null or project.materialSpecifications.empty}" class="empty-note">
+        No material and hardware specifications have been provided for this quotation.
+    </div>
+
+    <!-- =================================================== -->
+    <!-- SECTION 4: COMMERCIAL SUMMARY & PAYMENT SCHEDULE    -->
+    <!-- =================================================== -->
+    <div class="section-header" style="margin-top: 18px;">3. Commercial Terms and Payment Schedule</div>
+
+    <table class="commercial-container">
+        <tr>
+            <!-- Cost Summary Ledger (Left) -->
+            <td class="commercial-box" style="width: 48%;">
+                <div class="card-header" style="padding: 6px 10px; margin: 0; background-color: #f1f5f9;">Commercial Summary</div>
+                <table class="ledger-table">
+                    <tr>
+                        <td>Base Estimation Subtotal:</td>
+                        <td class="text-right font-bold" th:text="${fmt.formatCurrency(project.subTotal != null ? project.subTotal : project.grandTotal)}">₹ 1,00,000.00</td>
+                    </tr>
+                    <tr th:if="${project.discount != null and project.discount.compareTo(T(java.math.BigDecimal).ZERO) > 0}">
+                        <td style="color: #16a34a;">Commercial Discount:</td>
+                        <td class="text-right font-bold" style="color: #16a34a;" th:text="${'- ' + fmt.formatCurrency(project.discount)}">- ₹ 5,000.00</td>
+                    </tr>
+                    <tr th:if="${project.discount != null and project.discount.compareTo(T(java.math.BigDecimal).ZERO) > 0}">
+                        <td>Net Taxable Amount:</td>
+                        <td class="text-right font-bold" th:text="${fmt.formatCurrency(netAmount)}">₹ 95,000.00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>GST / Applicable Tax</span>
+                            <span th:if="${project.taxPercentage != null and project.taxPercentage.compareTo(T(java.math.BigDecimal).ZERO) > 0}" th:text="${' (' + project.taxPercentage + '%)'}"> (18%)</span>:
+                        </td>
+                        <td class="text-right font-bold" th:text="${fmt.formatCurrency(project.taxAmount != null ? project.taxAmount : T(java.math.BigDecimal).ZERO)}">₹ 17,100.00</td>
+                    </tr>
+                    <tr class="ledger-total-row">
+                        <td>TOTAL PAYABLE:</td>
+                        <td class="text-right" th:text="${fmt.formatCurrency(project.grandTotal)}">₹ 1,12,100.00</td>
+                    </tr>
+                </table>
+            </td>
+
+            <!-- Payment Milestones (Right) -->
+            <td class="commercial-box" style="width: 52%;">
+                <div class="card-header" style="padding: 6px 10px; margin: 0; background-color: #f1f5f9;">Payment Milestones Schedule</div>
+                <div th:if="${project.paymentMilestones != null and !project.paymentMilestones.empty}">
+                    <table class="ledger-table">
+                        <tr style="background-color: #f8fafc; font-weight: bold; font-size: 7pt; color: #475569;">
+                            <td style="width: 8%;" class="text-center">#</td>
+                            <td style="width: 52%;">Milestone Stage</td>
+                            <td style="width: 18%;" class="text-center">%</td>
+                            <td style="width: 22%;" class="text-right">Amount</td>
+                        </tr>
+                        <tr th:each="m, mStat : ${project.paymentMilestones}">
+                            <td class="text-center" th:text="${mStat.count}">1</td>
+                            <td><strong th:text="${m.milestoneName}">Advance on Booking</strong></td>
+                            <td class="text-center font-bold" th:text="${(m.percentage != null ? m.percentage : 0) + '%'}">30%</td>
+                            <td class="text-right font-bold" th:text="${fmt.formatCurrency(m.amount)}">₹ 33,630.00</td>
+                        </tr>
+                        <tr style="background-color: #f1f5f9; font-weight: bold;">
+                            <td colspan="2" class="text-right" style="font-size: 7.5pt; text-transform: uppercase;">Schedule Total:</td>
+                            <td class="text-center" th:text="${totalMilestonePercentage + '%'}">100%</td>
+                            <td class="text-right" th:text="${fmt.formatCurrency(totalMilestoneAmount)}">₹ 1,12,100.00</td>
+                        </tr>
+                    </table>
+                </div>
+                <div th:if="${project.paymentMilestones == null or project.paymentMilestones.empty}" class="empty-note" style="margin: 8px;">
+                    No payment milestone schedule has been specified.
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Amount in Words -->
+    <div class="words-box" th:if="${project.amountInWords != null and !project.amountInWords.trim().isEmpty()}">
+        <span style="font-weight: bold; color: #475569; text-transform: uppercase; font-size: 7pt;">Amount in Words: </span>
+        <strong style="color: #0f172a;" th:text="${project.amountInWords}">Rupees One Lakh Twelve Thousand One Hundred Only</strong>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- SECTION 5: TERMS & CONDITIONS                       -->
+    <!-- =================================================== -->
+    <div class="section-header" style="margin-top: 18px;">4. Terms and Conditions</div>
+
+    <div th:if="${project.quotationTerms != null and !project.quotationTerms.empty}">
+        <ol class="terms-list">
+            <li th:each="term : ${project.quotationTerms}" th:text="${term.termText}">
+                Quotation validity is as mentioned in the quotation details.
+            </li>
+        </ol>
+    </div>
+    <div th:if="${project.quotationTerms == null or project.quotationTerms.empty}" class="empty-note">
+        No specific terms and conditions have been specified for this quotation.
+    </div>
+
+    <!-- =================================================== -->
+    <!-- SECTION 6: WARRANTY & WORKMANSHIP POLICY            -->
+    <!-- =================================================== -->
+    <div class="section-header" style="margin-top: 18px;">5. Warranty and Workmanship Policy</div>
+
+    <div class="warranty-box" th:if="${project.warrantyTerms != null and !project.warrantyTerms.trim().isEmpty()}">
+        <strong>Warranty Terms: </strong>
+        <span th:text="${project.warrantyTerms}">RR Interiors provides workmanship warranty as agreed for the specific project. Warranty coverage is subject to the approved quotation, scope of work, and applicable terms.</span>
+    </div>
+    <div class="empty-note" th:if="${project.warrantyTerms == null or project.warrantyTerms.trim().isEmpty()}">
+        No specific warranty or workmanship terms have been specified for this quotation.
+    </div>
+
+    <!-- =================================================== -->
+    <!-- SECTION 7: CLIENT ACCEPTANCE & SIGN-OFF             -->
+    <!-- =================================================== -->
+    <div class="no-break" style="margin-top: 14px;">
+        <div class="section-header">6. Client Acceptance and Sign-off</div>
+
+        <div style="font-size: 7.5pt; color: #475569; margin-bottom: 10px; line-height: 1.35;">
+            I/We acknowledge that the scope of work, quotation value, material specifications, payment terms, and conditions stated in this quotation have been reviewed and accepted. Work will proceed based on these agreed specifications.
+        </div>
+
+        <table class="sign-table">
+            <tr>
+                <td class="sign-cell">
+                    <div class="sign-title">For Client Acceptance</div>
+                    <div class="sign-line">
+                        <strong>Signature:</strong> ____________________________<br /><br />
+                        <strong>Client Name:</strong> <span th:text="${project.clientSignName != null and !project.clientSignName.trim().isEmpty() ? project.clientSignName : (project.clientName != null ? project.clientName : '—')}">Client Name</span><br /><br />
+                        <strong>Date:</strong> ____________________________
+                    </div>
+                </td>
+                <td class="sign-cell">
+                    <div class="sign-title">For RR Interiors</div>
+                    <div class="sign-line">
+                        <strong>Authorized Signatory:</strong> <span th:text="${project.authorizedSignatory != null and !project.authorizedSignatory.trim().isEmpty() ? project.authorizedSignatory : 'Ramachandran (RR Interiors)'}">Ramachandran (RR Interiors)</span><br /><br />
+                        <strong>Signature:</strong> ____________________________<br /><br />
+                        <strong>Date:</strong> ____________________________
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 
 </html>
