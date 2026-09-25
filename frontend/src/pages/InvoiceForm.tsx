@@ -9,6 +9,7 @@ import RoomSection from '../components/RoomSection';
 import TotalsPanel from '../components/TotalsPanel';
 import MaterialSpecificationsSection from '../components/MaterialSpecificationsSection';
 import CommercialTermsSection from '../components/CommercialTermsSection';
+import { useToast } from '../context/ToastContext';
 
 const API_BASE = 'http://localhost:8080/api/projects';
 
@@ -17,6 +18,7 @@ const InvoiceForm: React.FC = () => {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [activeTab, setActiveTab] = useState<QuotationTab>('details');
+    const { showToast } = useToast();
 
     const [project, setProject] = useState<Project>({
         quotationNumber: '',
@@ -100,7 +102,7 @@ const InvoiceForm: React.FC = () => {
             });
         } catch (error) {
             console.error('Error fetching project:', error);
-            alert('Failed to load project details.');
+            showToast('Failed to load project details.', 'error');
             navigate('/dashboard');
         } finally {
             setLoading(false);
@@ -206,17 +208,17 @@ const InvoiceForm: React.FC = () => {
                 }
             }
             setProject(response.data);
-            alert('Quotation saved successfully!');
+            showToast('Quotation saved successfully!', 'success');
         } catch (error: any) {
             console.error('Save error:', error);
             const msg = error.response?.data?.message || 'Failed to save quotation.';
-            alert(msg);
+            showToast(msg, 'error');
         }
     };
 
     const handleDownloadPdf = async () => {
         if (!project.id) {
-            alert('Please save the quotation before exporting PDF.');
+            showToast('Please save the quotation before exporting PDF.', 'error');
             return;
         }
         try {
@@ -232,23 +234,23 @@ const InvoiceForm: React.FC = () => {
             link.remove();
         } catch (error) {
             console.error('PDF generation error:', error);
-            alert('Could not generate PDF.');
+            showToast('Could not generate PDF.', 'error');
         }
     };
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0B0F14]">
                 <div className="flex flex-col items-center gap-4">
                     <div className="w-12 h-12 border-4 border-blue-600/20 border-t-blue-600 rounded-full animate-spin"></div>
-                    <p className="text-slate-500 font-medium italic">Loading quotation details...</p>
+                    <p className="text-slate-500 dark:text-slate-400 font-medium italic">Loading quotation details...</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-[#f8fafc]">
+        <div className="min-h-screen bg-[#f8fafc] dark:bg-[#0B0F14] transition-colors duration-200">
             <ProjectHeader
                 project={project}
                 activeTab={activeTab}
@@ -263,16 +265,16 @@ const InvoiceForm: React.FC = () => {
                 <div className="flex items-center justify-between mb-6 no-print">
                     <button
                         onClick={() => navigate('/dashboard')}
-                        className="flex items-center gap-2 text-slate-500 hover:text-slate-900 font-bold uppercase tracking-widest text-xs transition-all"
+                        className="flex items-center gap-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold uppercase tracking-widest text-xs transition-all"
                     >
                         <ArrowLeft size={16} />
                         Back to Dashboard
                     </button>
 
-                    <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                        <span>Status: <strong className="text-slate-700">{project.id ? 'Saved' : 'Draft'}</strong></span>
+                    <div className="flex items-center gap-2 text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                        <span>Status: <strong className="text-slate-700 dark:text-slate-300">{project.id ? 'Saved' : 'Draft'}</strong></span>
                         <span>•</span>
-                        <span>Contract: <strong className="text-slate-700">{project.contractType || 'Material + Labour'}</strong></span>
+                        <span>Contract: <strong className="text-slate-700 dark:text-slate-300">{project.contractType || 'Material + Labour'}</strong></span>
                     </div>
                 </div>
 
@@ -290,20 +292,20 @@ const InvoiceForm: React.FC = () => {
                 {activeTab === 'estimation' && (
                     <div className="space-y-8 animate-in fade-in duration-300">
                         {/* Section Banner */}
-                        <div className="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+                        <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm transition-colors duration-200">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
+                                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50">
                                     <Calculator size={20} />
                                 </div>
                                 <div>
-                                    <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">Room Measurements & Item Estimates</h2>
-                                    <p className="text-xs text-slate-500 font-medium">Add rooms, dimensions (Length × Width × Nos / Pcs), and rates</p>
+                                    <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">Room Measurements & Item Estimates</h2>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Add rooms, dimensions (Length × Width × Nos / Pcs), and rates</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
                                 <button
                                     onClick={() => setActiveTab('details')}
-                                    className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
+                                    className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all"
                                 >
                                     ← Quotation Details
                                 </button>
@@ -337,19 +339,19 @@ const InvoiceForm: React.FC = () => {
                         <div className="flex justify-center pt-4 no-print">
                             <button
                                 onClick={addRoom}
-                                className="group flex flex-col items-center gap-3 px-12 py-8 border-2 border-dashed border-slate-200 rounded-2xl bg-white/50 hover:bg-white hover:border-blue-400 hover:shadow-xl hover:shadow-blue-50 transition-all duration-300"
+                                className="group flex flex-col items-center gap-3 px-12 py-8 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-white/50 dark:bg-[#111827]/50 hover:bg-white dark:hover:bg-[#111827] hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl hover:shadow-blue-50 dark:hover:shadow-none transition-all duration-300"
                             >
-                                <div className="w-12 h-12 bg-white border border-slate-200 rounded-full flex items-center justify-center text-slate-400 group-hover:text-blue-500 group-hover:border-blue-200 shadow-sm transition-all">
+                                <div className="w-12 h-12 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full flex items-center justify-center text-slate-400 dark:text-slate-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 group-hover:border-blue-200 dark:group-hover:border-blue-800/50 shadow-sm transition-all">
                                     <Plus size={24} strokeWidth={3} />
                                 </div>
-                                <span className="font-black text-slate-400 group-hover:text-slate-900 uppercase tracking-widest text-xs transition-all">
+                                <span className="font-black text-slate-400 dark:text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white uppercase tracking-widest text-xs transition-all">
                                     Add New Estimate Section / Room
                                 </span>
                             </button>
                         </div>
 
                         {/* Estimation Bottom Navigation */}
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-slate-900 text-white rounded-3xl shadow-xl shadow-slate-200 no-print">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-slate-900 dark:bg-slate-800 dark:border dark:border-slate-700 text-white rounded-3xl shadow-xl shadow-slate-200 dark:shadow-none no-print transition-colors duration-200">
                             <div>
                                 <h4 className="font-black text-sm uppercase tracking-wider">
                                     Estimation & Measurements Complete
@@ -403,7 +405,7 @@ const InvoiceForm: React.FC = () => {
                 )}
             </main>
 
-            <footer className="max-w-6xl mx-auto px-4 py-12 text-center text-slate-400 text-xs font-bold uppercase tracking-widest border-t border-slate-100 no-print">
+            <footer className="max-w-6xl mx-auto px-4 py-12 text-center text-slate-400 dark:text-slate-600 text-xs font-bold uppercase tracking-widest border-t border-slate-100 dark:border-slate-800 no-print transition-colors duration-200">
                 © 2026 RR Interiors • Professional Estimation & Quotation System
             </footer>
 

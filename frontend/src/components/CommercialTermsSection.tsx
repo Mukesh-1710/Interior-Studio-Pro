@@ -327,16 +327,16 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
     return (
         <div className="space-y-8 animate-in fade-in duration-300 pb-12">
             {/* TOP BANNER */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-sm transition-colors duration-200">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50">
                         <Receipt size={20} />
                     </div>
                     <div>
-                        <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">
+                        <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">
                             Commercial Terms & Cost Summary
                         </h2>
-                        <p className="text-xs text-slate-500 font-medium">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                             Step 4 of 4 • Finalize commercial breakdown, payment milestones, terms, warranty & sign-off
                         </p>
                     </div>
@@ -345,7 +345,7 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
                     <button
                         type="button"
                         onClick={onBackToMaterials}
-                        className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
+                        className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
                     >
                         <ArrowLeft size={14} />
                         Materials & Hardware
@@ -362,14 +362,14 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
             </div>
 
             {/* SECTION 1: COST SUMMARY & COMMERCIAL ADJUSTMENTS */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-6">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm space-y-6 transition-colors duration-200">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-black text-xs border border-emerald-100">
+                        <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-black text-xs border border-emerald-100 dark:border-emerald-800/50">
                             1
                         </div>
                         <div>
-                            <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">
+                            <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
                                 Cost Summary & Taxes
                             </h3>
                             <p className="text-xs text-slate-400 font-medium">
@@ -377,7 +377,7 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
                             </p>
                         </div>
                     </div>
-                    <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="text-[10px] font-black uppercase px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50 hidden sm:inline-block">
                         Authoritative Backend Calculation
                     </span>
                 </div>
@@ -575,14 +575,14 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
             </div>
 
             {/* SECTION 2: PAYMENT MILESTONES */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm space-y-6 transition-colors duration-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-black text-xs border border-blue-100">
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center font-black text-xs border border-blue-100 dark:border-blue-800/50">
                             2
                         </div>
                         <div>
-                            <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">
+                            <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
                                 Payment Milestones Schedule
                             </h3>
                             <p className="text-xs text-slate-400 font-medium">
@@ -594,7 +594,7 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
                         <button
                             type="button"
                             onClick={handleLoadStandardMilestones}
-                            className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
+                            className="px-3.5 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
                         >
                             <RefreshCw size={13} />
                             Load Standard Schedule
@@ -611,14 +611,14 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
                 </div>
 
                 {/* Schedule Total Percentage Meter */}
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 rounded-full ${isMilestonesValid ? 'bg-emerald-500 ring-4 ring-emerald-100' : 'bg-amber-500 ring-4 ring-amber-100'}`} />
+                        <div className={`w-3 h-3 rounded-full ${isMilestonesValid ? 'bg-emerald-500 ring-4 ring-emerald-100 dark:ring-emerald-900/50' : 'bg-amber-500 ring-4 ring-amber-100 dark:ring-amber-900/50'}`} />
                         <div>
-                            <span className="text-xs font-black uppercase tracking-wider text-slate-800">
+                            <span className="text-xs font-black uppercase tracking-wider text-slate-800 dark:text-slate-200">
                                 Total Scheduled: {totalMilestonePercentage}%
                             </span>
-                            <p className="text-[11px] text-slate-500">
+                            <p className="text-[11px] text-slate-500 dark:text-slate-400">
                                 {isMilestonesValid
                                     ? 'Payment schedule is balanced at 100% of final payable value.'
                                     : `Schedule requires exactly 100% (currently ${totalMilestonePercentage > 100 ? `${totalMilestonePercentage - 100}% over` : `${100 - totalMilestonePercentage}% remaining`}).`}
@@ -627,12 +627,12 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
                     </div>
                     <div>
                         {isMilestonesValid ? (
-                            <span className="inline-flex items-center gap-1.5 text-xs font-black text-emerald-700 bg-emerald-100/80 px-3 py-1.5 rounded-xl">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-black text-emerald-700 dark:text-emerald-400 bg-emerald-100/80 dark:bg-emerald-900/30 px-3 py-1.5 rounded-xl">
                                 <CheckCircle2 size={14} />
                                 100% Complete
                             </span>
                         ) : (
-                            <span className="inline-flex items-center gap-1.5 text-xs font-black text-amber-800 bg-amber-100/80 px-3 py-1.5 rounded-xl">
+                            <span className="inline-flex items-center gap-1.5 text-xs font-black text-amber-800 dark:text-amber-400 bg-amber-100/80 dark:bg-amber-900/30 px-3 py-1.5 rounded-xl">
                                 <AlertCircle size={14} />
                                 Must Equal 100%
                             </span>
@@ -752,14 +752,14 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
             </div>
 
             {/* SECTION 3: TERMS & CONDITIONS */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 md:p-8 shadow-sm space-y-6">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm space-y-6 transition-colors duration-200">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-black text-xs border border-indigo-100">
+                        <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-black text-xs border border-indigo-100 dark:border-indigo-800/50">
                             3
                         </div>
                         <div>
-                            <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider">
+                            <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
                                 Terms & Conditions
                             </h3>
                             <p className="text-xs text-slate-400 font-medium">
@@ -771,7 +771,7 @@ const CommercialTermsSection: React.FC<CommercialTermsSectionProps> = ({
                         <button
                             type="button"
                             onClick={handleLoadStandardTerms}
-                            className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
+                            className="px-3.5 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5"
                         >
                             <RefreshCw size={13} />
                             Load Standard Terms

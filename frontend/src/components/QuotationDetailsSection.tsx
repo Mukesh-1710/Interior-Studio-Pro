@@ -117,19 +117,19 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
     return (
         <div className="space-y-8 animate-in fade-in duration-300">
             {/* SECTION 1 — QUOTATION INFORMATION */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-100 p-8">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-100 dark:shadow-none p-8 transition-colors duration-200">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 border border-blue-100">
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50">
                             <FileText size={20} />
                         </div>
                         <div>
-                            <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">1. Quotation Information</h2>
-                            <p className="text-xs text-slate-500 font-medium">Quotation numbering and timeline validity</p>
+                            <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">1. Quotation Information</h2>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Quotation numbering and timeline validity</p>
                         </div>
                     </div>
                     {project.quotationNumber && (
-                        <div className="px-3 py-1 bg-blue-50 border border-blue-200 text-blue-700 font-mono font-bold text-xs rounded-lg">
+                        <div className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800/50 text-blue-700 dark:text-blue-300 font-mono font-bold text-xs rounded-lg">
                             {project.quotationNumber}
                         </div>
                     )}
@@ -137,7 +137,7 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Quotation Number
                         </label>
                         <div className="relative">
@@ -146,14 +146,14 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 value={project.quotationNumber || ''}
                                 onChange={(e) => onChange('quotationNumber', e.target.value)}
                                 placeholder="Auto-generated on Save (e.g. RR/2026/QT-018)"
-                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 font-mono"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-500/40 focus:border-blue-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500 font-mono"
                             />
                         </div>
-                        <p className="text-[10px] text-slate-400 mt-1.5">Leave blank to automatically assign the next sequence number.</p>
+                        <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1.5">Leave blank to automatically assign the next sequence number.</p>
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Quotation Date <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
@@ -161,14 +161,14 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 type="date"
                                 value={project.date || ''}
                                 onChange={(e) => onChange('date', e.target.value)}
-                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-500/40 focus:border-blue-500 outline-none transition-all"
                             />
-                            <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
+                            <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 pointer-events-none" size={16} />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Valid Until
                         </label>
                         <div className="relative">
@@ -176,30 +176,30 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 type="date"
                                 value={project.validUntil || ''}
                                 onChange={(e) => onChange('validUntil', e.target.value)}
-                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-500/40 focus:border-blue-500 outline-none transition-all"
                             />
-                            <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
+                            <Calendar className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 pointer-events-none" size={16} />
                         </div>
-                        <p className="text-[10px] text-slate-400 mt-1.5">Defaults to 30 days from quotation issue date.</p>
+                        <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1.5">Defaults to 30 days from quotation issue date.</p>
                     </div>
                 </div>
             </div>
 
             {/* SECTION 2 — CLIENT DETAILS */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-100 p-8">
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600 border border-indigo-100">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-100 dark:shadow-none p-8 transition-colors duration-200">
+                <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800/50">
                         <User size={20} />
                     </div>
                     <div>
-                        <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">2. Client Details</h2>
-                        <p className="text-xs text-slate-500 font-medium">Customer contact information and site billing address</p>
+                        <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">2. Client Details</h2>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Customer contact information and site billing address</p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Client Name <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
@@ -208,13 +208,13 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 value={project.clientName || ''}
                                 onChange={(e) => onChange('clientName', e.target.value)}
                                 placeholder="e.g. Dr. Senthil Nathan"
-                                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-500/40 focus:border-indigo-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                             />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Phone Number <span className="text-red-500">*</span>
                         </label>
                         <div className="relative">
@@ -223,14 +223,14 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 value={project.clientPhone || ''}
                                 onChange={(e) => onChange('clientPhone', e.target.value)}
                                 placeholder="+91 98400 12345"
-                                className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                                className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-500/40 focus:border-indigo-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                             />
-                            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={16} />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Email Address
                         </label>
                         <div className="relative">
@@ -239,15 +239,15 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 value={project.clientEmail || ''}
                                 onChange={(e) => onChange('clientEmail', e.target.value)}
                                 placeholder="client@example.com"
-                                className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all font-normal"
+                                className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-500/40 focus:border-indigo-500 outline-none transition-all font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                             />
-                            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={16} />
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                    <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                         Client / Site Address
                     </label>
                     <div className="relative">
@@ -256,28 +256,28 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                             value={project.clientAddress || ''}
                             onChange={(e) => onChange('clientAddress', e.target.value)}
                             placeholder="Flat / Villa No, Apartment Complex, Street, City, Pincode"
-                            className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all resize-none"
+                            className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-indigo-500/20 dark:focus:ring-indigo-500/40 focus:border-indigo-500 outline-none transition-all resize-none placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                         />
-                        <MapPin className="absolute left-3.5 top-4 text-slate-400" size={16} />
+                        <MapPin className="absolute left-3.5 top-4 text-slate-400 dark:text-slate-500" size={16} />
                     </div>
                 </div>
             </div>
 
             {/* SECTION 3 — PROJECT DETAILS */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-100 p-8">
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-100 dark:shadow-none p-8 transition-colors duration-200">
+                <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-purple-50 dark:bg-purple-900/20 flex items-center justify-center text-purple-600 dark:text-purple-400 border border-purple-100 dark:border-purple-800/50">
                         <Building2 size={20} />
                     </div>
                     <div>
-                        <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">3. Project Details</h2>
-                        <p className="text-xs text-slate-500 font-medium">Project scope description, site location, and estimated execution timeline</p>
+                        <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">3. Project Details</h2>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Project scope description, site location, and estimated execution timeline</p>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Project Name / Title
                         </label>
                         <input
@@ -285,12 +285,12 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                             value={project.projectName || ''}
                             onChange={(e) => onChange('projectName', e.target.value)}
                             placeholder="e.g. Senthil Luxury Residence - 4BHK"
-                            className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+                            className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-purple-500/20 dark:focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Project Location / Area
                         </label>
                         <div className="relative">
@@ -299,14 +299,14 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 value={project.projectLocation || ''}
                                 onChange={(e) => onChange('projectLocation', e.target.value)}
                                 placeholder="e.g. Anna Nagar West, Chennai"
-                                className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+                                className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-purple-500/20 dark:focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                             />
-                            <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                            <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={16} />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-2">
+                        <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
                             Estimated Duration
                         </label>
                         <div className="relative">
@@ -315,28 +315,28 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 value={project.estimatedDuration || ''}
                                 onChange={(e) => onChange('estimatedDuration', e.target.value)}
                                 placeholder="e.g. 45 - 60 Working Days"
-                                className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none transition-all"
+                                className="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-purple-500/20 dark:focus:ring-purple-500/40 focus:border-purple-500 outline-none transition-all placeholder:font-normal placeholder:text-slate-400 dark:placeholder:text-slate-500"
                             />
-                            <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                            <Clock className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={16} />
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* SECTION 4 — CONTRACT TYPE */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-100 p-8">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-100 dark:shadow-none p-8 transition-colors duration-200">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 border border-emerald-100">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800/50">
                             <PackageCheck size={20} />
                         </div>
                         <div>
-                            <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">4. Contract Type</h2>
-                            <p className="text-xs text-slate-500 font-medium">Select commercial execution agreement model</p>
+                            <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">4. Contract Type</h2>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Select commercial execution agreement model</p>
                         </div>
                     </div>
                     <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                        Current: <strong className="text-slate-900">{project.contractType || 'Material + Labour'}</strong>
+                        Current: <strong className="text-slate-900 dark:text-white">{project.contractType || 'Material + Labour'}</strong>
                     </span>
                 </div>
 
@@ -350,27 +350,27 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                 onClick={() => onChange('contractType', type.id)}
                                 className={`cursor-pointer rounded-2xl p-6 border-2 transition-all relative overflow-hidden flex flex-col justify-between ${
                                     isSelected
-                                        ? 'border-blue-600 bg-blue-50/40 shadow-lg shadow-blue-50 ring-2 ring-blue-500/20'
-                                        : 'border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300'
+                                        ? 'border-blue-600 bg-blue-50/40 dark:bg-blue-900/20 shadow-lg shadow-blue-50 dark:shadow-none ring-2 ring-blue-500/20 dark:ring-blue-500/40'
+                                        : 'border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/30 hover:bg-white dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600'
                                 }`}
                             >
                                 <div>
                                     <div className="flex items-center justify-between mb-4">
-                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                                            isSelected ? 'bg-blue-600 text-white shadow-md shadow-blue-200' : 'bg-white text-slate-600 border border-slate-200'
+                                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${
+                                            isSelected ? 'bg-blue-600 text-white shadow-md shadow-blue-200 dark:shadow-none' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700'
                                         }`}>
                                             <Icon size={22} />
                                         </div>
                                         {isSelected && (
-                                            <CheckCircle2 size={22} className="text-blue-600" />
+                                            <CheckCircle2 size={22} className="text-blue-600 dark:text-blue-400" />
                                         )}
                                     </div>
-                                    <h3 className="font-black text-base text-slate-900 mb-1">{type.title}</h3>
-                                    <p className="text-xs text-slate-500 font-medium leading-relaxed mb-4">{type.subtitle}</p>
+                                    <h3 className="font-black text-base text-slate-900 dark:text-white mb-1">{type.title}</h3>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed mb-4">{type.subtitle}</p>
                                 </div>
                                 <div>
-                                    <span className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                                        isSelected ? 'bg-blue-100 text-blue-700' : 'bg-slate-200 text-slate-600'
+                                    <span className={`inline-block px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider transition-colors ${
+                                        isSelected ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300' : 'bg-slate-200 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400'
                                     }`}>
                                         {type.badge}
                                     </span>
@@ -382,25 +382,25 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
             </div>
 
             {/* SECTION 5 — PROJECT SCOPE */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 shadow-xl shadow-slate-100 p-8">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-5 mb-6">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl shadow-slate-100 dark:shadow-none p-8 transition-colors duration-200">
+                <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 border border-amber-100">
+                        <div className="w-10 h-10 rounded-xl bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-800/50">
                             <Layers size={20} />
                         </div>
                         <div>
-                            <h2 className="text-base font-black text-slate-900 uppercase tracking-tight">5. Project Scope of Work</h2>
-                            <p className="text-xs text-slate-500 font-medium">Select included items or add custom areas of execution</p>
+                            <h2 className="text-base font-black text-slate-900 dark:text-white uppercase tracking-tight">5. Project Scope of Work</h2>
+                            <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Select included items or add custom areas of execution</p>
                         </div>
                     </div>
-                    <span className="text-xs font-bold text-slate-500">
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
                         {currentScopeList.length} Items Selected
                     </span>
                 </div>
 
                 {/* Predefined Scope Chips */}
                 <div className="mb-6">
-                    <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 mb-3">
+                    <label className="block text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
                         Select Scope Items
                     </label>
                     <div className="flex flex-wrap gap-2.5">
@@ -413,15 +413,15 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                                     onClick={() => toggleScopeItem(item)}
                                     className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                                         isSelected
-                                            ? 'bg-slate-900 text-white shadow-md shadow-slate-200 hover:bg-black'
-                                            : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200'
+                                            ? 'bg-slate-900 dark:bg-blue-600 text-white shadow-md shadow-slate-200 dark:shadow-none hover:bg-black dark:hover:bg-blue-700'
+                                            : 'bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-700/50 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
                                     }`}
                                 >
                                     {item}
                                     {isSelected ? (
-                                        <CheckCircle2 size={14} className="text-blue-400" />
+                                        <CheckCircle2 size={14} className="text-blue-400 dark:text-white" />
                                     ) : (
-                                        <Plus size={14} className="text-slate-400" />
+                                        <Plus size={14} className="text-slate-400 dark:text-slate-500" />
                                     )}
                                 </button>
                             );
@@ -436,12 +436,12 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                         value={customScopeInput}
                         onChange={(e) => setCustomScopeInput(e.target.value)}
                         placeholder="Add custom scope item (e.g. CNC Jali Partition, Terrace Pergola)..."
-                        className="flex-1 px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-medium text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+                        className="flex-1 px-4 py-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-medium text-slate-800 dark:text-white focus:bg-white dark:focus:bg-slate-900 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-500/40 focus:border-blue-500 outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
                     />
                     <button
                         type="submit"
                         disabled={!customScopeInput.trim()}
-                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2 shadow-md shadow-blue-100"
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center gap-2 shadow-md shadow-blue-100 dark:shadow-none"
                     >
                         <Plus size={16} strokeWidth={3} />
                         Add Custom Scope
@@ -450,21 +450,21 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
 
                 {/* Active Selected Scope Display */}
                 {currentScopeList.length > 0 && (
-                    <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl">
-                        <label className="block text-[10px] font-black uppercase tracking-wider text-slate-400 mb-2">
+                    <div className="p-4 bg-slate-50 dark:bg-slate-800/30 border border-slate-200 dark:border-slate-800 rounded-2xl transition-colors">
+                        <label className="block text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2">
                             Included in Quotation Scope ({currentScopeList.length})
                         </label>
                         <div className="flex flex-wrap gap-2">
                             {currentScopeList.map((item) => (
                                 <span
                                     key={item}
-                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 text-slate-800 rounded-lg text-xs font-bold shadow-sm"
+                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg text-xs font-bold shadow-sm dark:shadow-none transition-colors"
                                 >
                                     {item}
                                     <button
                                         type="button"
                                         onClick={() => handleRemoveScope(item)}
-                                        className="text-slate-400 hover:text-red-500 transition-colors"
+                                        className="text-slate-400 dark:text-slate-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                                         title="Remove scope item"
                                     >
                                         <X size={14} />
@@ -477,7 +477,7 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
             </div>
 
             {/* ACTION BUTTONS FOOTER */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-slate-900 text-white rounded-3xl shadow-xl shadow-slate-200">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-slate-900 dark:bg-slate-800 text-white rounded-3xl shadow-xl shadow-slate-200 dark:shadow-none dark:border dark:border-slate-700 transition-colors duration-200">
                 <div>
                     <h4 className="font-black text-sm uppercase tracking-wider">Quotation Details Configured</h4>
                     <p className="text-xs text-slate-400 font-medium">Proceed to room-by-room measurement and rates estimation</p>
@@ -494,7 +494,7 @@ const QuotationDetailsSection: React.FC<QuotationDetailsSectionProps> = ({
                     <button
                         type="button"
                         onClick={onContinueToEstimation}
-                        className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 transition-all"
+                        className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 dark:shadow-none transition-all"
                     >
                         Continue to Estimation
                         <ArrowRight size={16} />

@@ -393,21 +393,21 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
     return (
         <div className="space-y-8 animate-in fade-in duration-300">
             {/* HERO / SECTION BANNER */}
-            <div className="bg-white rounded-3xl border border-slate-200 p-6 md:p-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors duration-200">
                 <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-700 flex items-center justify-center text-white shadow-lg shadow-slate-200 shrink-0 mt-0.5">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-700 flex items-center justify-center text-white shadow-lg shadow-slate-200 dark:shadow-none shrink-0 mt-0.5">
                         <Hammer size={24} className="text-blue-400" />
                     </div>
                     <div>
                         <div className="flex items-center gap-3">
-                            <h2 className="text-lg font-black text-slate-900 uppercase tracking-tight">
+                            <h2 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight">
                                 MATERIAL & HARDWARE SPECIFICATIONS
                             </h2>
-                            <span className="px-2.5 py-0.5 bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-black uppercase tracking-wider rounded-md">
+                            <span className="px-2.5 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/50 text-[10px] font-black uppercase tracking-wider rounded-md">
                                 Tab 3
                             </span>
                         </div>
-                        <p className="text-xs text-slate-500 font-medium mt-1">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-1">
                             Specify the materials, brands, finishes, and hardware included in this quotation.
                         </p>
                     </div>
@@ -418,16 +418,16 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
                     <button
                         type="button"
                         onClick={handleLoadStandardTemplates}
-                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-slate-200 active:scale-95"
+                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-slate-200 dark:border-slate-700 active:scale-95"
                         title="Load standard interior material presets"
                     >
-                        <Sparkles size={16} className="text-blue-600" />
+                        <Sparkles size={16} className="text-blue-600 dark:text-blue-400" />
                         Load Standard Template
                     </button>
                     <button
                         type="button"
                         onClick={handleOpenAddModal}
-                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-blue-200 active:scale-95"
+                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-blue-200 dark:shadow-none active:scale-95"
                     >
                         <Plus size={18} strokeWidth={3} />
                         + Add Specification
@@ -438,33 +438,33 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
             {/* QUICK STATS & SUMMARY PILLS */}
             {specs.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="bg-white rounded-2xl border border-slate-200 p-4 flex items-center gap-3.5 shadow-sm">
-                        <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-700 font-black text-sm">
+                    <div className="bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-800 p-4 flex items-center gap-3.5 shadow-sm">
+                        <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-900/50 flex items-center justify-center text-slate-700 dark:text-slate-300 font-black text-sm">
                             <Layers size={20} />
                         </div>
                         <div>
                             <p className="text-[10px] font-black uppercase tracking-wider text-slate-400">Total Specifications</p>
-                            <p className="text-xl font-black text-slate-900">{specs.length} Items</p>
+                            <p className="text-xl font-black text-slate-900 dark:text-white">{specs.length} Items</p>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50/50 to-white p-4 flex items-center gap-3.5 shadow-sm">
-                        <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-700 font-black text-sm">
+                    <div className="bg-white dark:bg-blue-900/10 rounded-2xl border border-blue-200 dark:border-blue-800/50 p-4 flex items-center gap-3.5 shadow-sm">
+                        <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-700 dark:text-blue-400 font-black text-sm">
                             <Package size={20} />
                         </div>
                         <div>
-                            <p className="text-[10px] font-black uppercase tracking-wider text-blue-600">RR Interiors Supplied</p>
-                            <p className="text-xl font-black text-blue-900">{rrSuppliedCount} Items</p>
+                            <p className="text-[10px] font-black uppercase tracking-wider text-blue-600 dark:text-blue-400">RR Interiors Supplied</p>
+                            <p className="text-xl font-black text-blue-900 dark:text-blue-100">{rrSuppliedCount} Items</p>
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-2xl border border-amber-200 bg-gradient-to-br from-amber-50/50 to-white p-4 flex items-center gap-3.5 shadow-sm">
-                        <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-700 font-black text-sm">
+                    <div className="bg-white dark:bg-amber-900/10 rounded-2xl border border-amber-200 dark:border-amber-800/50 p-4 flex items-center gap-3.5 shadow-sm">
+                        <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-700 dark:text-amber-400 font-black text-sm">
                             <UserCheck size={20} />
                         </div>
                         <div>
-                            <p className="text-[10px] font-black uppercase tracking-wider text-amber-600">Client Supplied</p>
-                            <p className="text-xl font-black text-amber-900">{clientSuppliedCount} Items</p>
+                            <p className="text-[10px] font-black uppercase tracking-wider text-amber-600 dark:text-amber-400">Client Supplied</p>
+                            <p className="text-xl font-black text-amber-900 dark:text-amber-100">{clientSuppliedCount} Items</p>
                         </div>
                     </div>
                 </div>
@@ -548,21 +548,21 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
 
             {/* EMPTY STATE */}
             {specs.length === 0 ? (
-                <div className="bg-white rounded-3xl border-2 border-dashed border-slate-200 p-12 text-center shadow-sm">
-                    <div className="w-16 h-16 bg-blue-50 text-blue-600 border border-blue-100 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                <div className="bg-white dark:bg-[#111827] rounded-3xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-12 text-center shadow-sm">
+                    <div className="w-16 h-16 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/50 rounded-3xl flex items-center justify-center mx-auto mb-4">
                         <Hammer size={32} />
                     </div>
-                    <h3 className="text-base font-black text-slate-800 uppercase tracking-tight mb-1">
+                    <h3 className="text-base font-black text-slate-800 dark:text-white uppercase tracking-tight mb-1">
                         No material or hardware specifications have been added yet.
                     </h3>
-                    <p className="text-xs text-slate-500 font-medium max-w-md mx-auto mb-6">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium max-w-md mx-auto mb-6">
                         Add project-specific material specifications or load the standard RR Interiors starter template to document plywood grades, hardware brands, and finishes.
                     </p>
                     <div className="flex flex-wrap items-center justify-center gap-3">
                         <button
                             type="button"
                             onClick={handleLoadStandardTemplates}
-                            className="flex items-center gap-2 px-5 py-3 bg-slate-900 hover:bg-black text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md active:scale-95"
+                            className="flex items-center gap-2 px-5 py-3 bg-slate-900 dark:bg-slate-800 hover:bg-black dark:hover:bg-slate-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-md dark:shadow-none active:scale-95"
                         >
                             <Sparkles size={16} className="text-blue-400" />
                             Load Standard Template
@@ -570,7 +570,7 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
                         <button
                             type="button"
                             onClick={handleOpenAddModal}
-                            className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-blue-200 active:scale-95"
+                            className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-blue-200 dark:shadow-none active:scale-95"
                         >
                             <Plus size={18} strokeWidth={3} />
                             + Add Specification
@@ -579,25 +579,25 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
                 </div>
             ) : filteredSpecs.length === 0 ? (
                 /* Filter Empty State */
-                <div className="bg-white rounded-2xl border border-slate-200 p-8 text-center shadow-sm">
-                    <p className="text-sm font-bold text-slate-600 mb-2">No specifications match your search or filter.</p>
+                <div className="bg-white dark:bg-[#111827] rounded-2xl border border-slate-200 dark:border-slate-800 p-8 text-center shadow-sm">
+                    <p className="text-sm font-bold text-slate-600 dark:text-slate-400 mb-2">No specifications match your search or filter.</p>
                     <button
                         type="button"
                         onClick={() => { setSearchTerm(''); setSelectedCategoryFilter('ALL'); }}
-                        className="text-xs font-bold text-blue-600 hover:underline uppercase tracking-wider"
+                        className="text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline uppercase tracking-wider"
                     >
                         Clear Filters
                     </button>
                 </div>
             ) : (
                 /* SPECIFICATIONS LIST / TABLE */
-                <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
-                    <div className="p-4 bg-slate-50/80 border-b border-slate-200 flex items-center justify-between">
+                <div className="bg-white dark:bg-[#111827] rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div className="p-4 bg-slate-50/80 dark:bg-slate-800/30 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <span className="text-xs font-black uppercase tracking-wider text-slate-700">
+                            <span className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">
                                 Project Specification Schedule
                             </span>
-                            <span className="px-2 py-0.5 bg-slate-200 text-slate-700 text-[10px] font-bold rounded-md">
+                            <span className="px-2 py-0.5 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 text-[10px] font-bold rounded-md">
                                 {filteredSpecs.length} {filteredSpecs.length === 1 ? 'Item' : 'Items'}
                             </span>
                         </div>
@@ -1012,7 +1012,7 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
             )}
 
             {/* BOTTOM NAVIGATION FOOTER */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-slate-900 text-white rounded-3xl shadow-xl shadow-slate-200">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 bg-slate-900 dark:bg-slate-800 text-white rounded-3xl shadow-xl shadow-slate-200 dark:shadow-none dark:border dark:border-slate-700 transition-colors duration-200">
                 <div>
                     <h4 className="font-black text-sm uppercase tracking-wider">
                         Materials & Hardware Configured ({specs.length} Specifications)
@@ -1042,7 +1042,7 @@ const MaterialSpecificationsSection: React.FC<MaterialSpecificationsSectionProps
                         <button
                             type="button"
                             onClick={onContinueToCommercialTerms}
-                            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 transition-all active:scale-95"
+                            className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/30 dark:shadow-none transition-all active:scale-95"
                         >
                             Continue to Commercial Terms
                             <ArrowRight size={16} />
